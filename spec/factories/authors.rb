@@ -9,7 +9,7 @@ FactoryBot.define do
               books_count { 5 }
           end
           after(:create) do |authors, evaluator|
-              create_list(:book, evaluator.books_count, authors: [authors])
+              create_list(:book, evaluator.books_count, author: authors)
       
               authors.reload
           end

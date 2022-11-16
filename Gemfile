@@ -66,4 +66,11 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-redis'
+  gem 'shoulda-matchers', '~> 5.0'
+end
+
 gem "rspec-rails", group: [:development, :test]

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :subscriber do
-    sequence(:name) { |n| "name#{n}" }
+    sequence(:name) { |n| "name#{n+1}" }
     #email { Faker::Internet.email(name: Faker::Name.name, separators: '_', domain: 'mail.ru') }
     trait :in_valid do
       name { 'name1' }
@@ -11,7 +11,7 @@ FactoryBot.define do
       end
       after(:create) do |subscriber, evaluator|
         
-       #create_list(:subscription, evaluator.subscriptions_count, subscriber: )
+       create_list(:subscription, evaluator.subscriptions_count, subscriber: subscriber)
 
         subscriber.reload
       end

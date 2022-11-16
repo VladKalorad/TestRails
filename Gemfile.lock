@@ -71,7 +71,15 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
+    database_cleaner-redis (2.0.0)
+      database_cleaner-core (~> 2.0.0)
+      redis
     debug (1.6.3)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
@@ -150,6 +158,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (5.0.5)
+      redis-client (>= 0.9.0)
+    redis-client (0.11.1)
+      connection_pool
     reline (0.3.1)
       io-console (~> 0.5)
     rspec-core (3.12.0)
@@ -169,6 +181,8 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
+    shoulda-matchers (5.2.0)
+      activesupport (>= 5.2.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -201,6 +215,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  database_cleaner-active_record
+  database_cleaner-redis
   debug
   factory_bot
   factory_bot_rails
@@ -210,6 +226,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3)
   rspec-rails
+  shoulda-matchers (~> 5.0)
   sprockets-rails
   stimulus-rails
   turbo-rails
