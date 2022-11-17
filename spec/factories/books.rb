@@ -10,12 +10,12 @@ FactoryBot.define do
       year { rand(1900..1940) }
     end
     trait :with_genres do
-    after_create do |book|
+      after_create do |book|
         book.details << FactoryBot.create(:genre)
       end
     end
     # trait :archived do
     # status {0}
     # end
-   end
+  end
 end

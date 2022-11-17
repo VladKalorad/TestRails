@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AuthorBook, type: :model do
@@ -7,7 +9,6 @@ RSpec.describe AuthorBook, type: :model do
   end
 
   describe 'validations' do
-
     it { is_expected.to validate_presence_of(:book_id) }
     it { is_expected.to validate_presence_of(:author_id) }
   end

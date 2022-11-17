@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   describe 'associations' do
-    let(:book) { create :book, :with_genres}
+    let(:book) { create :book, :with_genres }
     it { is_expected.to have_many(:books_genres) }
     it { is_expected.to have_many(:genres).through(:books_genres) }
     it { is_expected.to have_many(:author_books) }
