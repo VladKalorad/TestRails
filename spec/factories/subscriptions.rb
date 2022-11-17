@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :subscription do
     association :subscriber
     association :book
     deleted_at { DateTime.new(rand(2018..2020), rand(1..5), rand(1..28), 10, 5, 6) }
 
-    #finish { start + 1.year }
+    # finish { start + 1.year }
     is_active { true }
 
     trait :in_active do
