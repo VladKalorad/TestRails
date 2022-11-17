@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :authors_book do
+  factory :author_books do
     association :book
     association :author
   end
