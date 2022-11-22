@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,71 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_106_142_733) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_165018) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'author_books', force: :cascade do |t|
-    t.bigint 'book_id', null: false
-    t.bigint 'author_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index %w[author_id book_id], name: 'index_author_books_on_author_id_and_book_id', unique: true
-    t.index ['author_id'], name: 'index_author_books_on_author_id'
-    t.index ['book_id'], name: 'index_author_books_on_book_id'
+  create_table "authors", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'authors', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "authors_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
 
-  create_table 'books', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'year', null: false
-    t.integer 'quantity', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "books", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "year", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'books_genres', force: :cascade do |t|
-    t.bigint 'book_id', null: false
-    t.bigint 'genre_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['book_id'], name: 'index_books_genres_on_book_id'
-    t.index %w[genre_id book_id], name: 'index_books_genres_on_genre_id_and_book_id', unique: true
-    t.index ['genre_id'], name: 'index_books_genres_on_genre_id'
+  create_table "books_genres", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_books_genres_on_book_id"
+    t.index ["genre_id", "book_id"], name: "index_books_genres_on_genre_id_and_book_id", unique: true
+    t.index ["genre_id"], name: "index_books_genres_on_genre_id"
   end
 
-  create_table 'genres', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'subscribers', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "subscribers", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'subscriptions', force: :cascade do |t|
-    t.bigint 'subscriber_id', null: false
-    t.bigint 'book_id', null: false
-    t.datetime 'deleted_at'
-    t.boolean 'is_active'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['book_id'], name: 'index_subscriptions_on_book_id'
-    t.index ['subscriber_id'], name: 'index_subscriptions_on_subscriber_id'
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "subscriber_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "deleted_at"
+    t.boolean "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_subscriptions_on_book_id"
+    t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
   end
 
-  add_foreign_key 'author_books', 'authors'
-  add_foreign_key 'author_books', 'books'
-  add_foreign_key 'books_genres', 'books'
-  add_foreign_key 'books_genres', 'genres'
-  add_foreign_key 'subscriptions', 'books'
-  add_foreign_key 'subscriptions', 'subscribers'
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
+  add_foreign_key "books_genres", "books"
+  add_foreign_key "books_genres", "genres"
+  add_foreign_key "subscriptions", "books"
+  add_foreign_key "subscriptions", "subscribers"
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Books
-  class CountOfBooks
+  class UsedBooks
     def self.call
-      Book.count(:all)
+      Subscription.where(is_active: true).count
     end
   end
 end
