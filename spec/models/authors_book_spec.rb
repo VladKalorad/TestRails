@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe AuthorsBook, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { is_expected.to belong_to(:book) }
+    it { is_expected.to belong_to(:author) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:book_id) }
+    it { is_expected.to validate_presence_of(:author_id) }
+  end
 end
